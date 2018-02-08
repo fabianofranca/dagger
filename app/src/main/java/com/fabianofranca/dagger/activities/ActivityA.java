@@ -4,8 +4,12 @@ import com.fabianofranca.dagger.services.ServiceA;
 
 import javax.inject.Inject;
 
-public class ActivityA {
+public class ActivityA implements Activity {
 
     @Inject
     ServiceA serviceA;
+
+    @Inject
+    public ActivityA() {
+    }
 }

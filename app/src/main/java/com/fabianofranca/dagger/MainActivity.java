@@ -21,10 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         component = DaggerActivitiesComponent.builder().build();
 
-        activityA = new ActivityA();
-
-        component.injectActivityA(activityA);
-
+        activityA = component.createActivityA();
         activityB = component.createActivityB();
     }
 }

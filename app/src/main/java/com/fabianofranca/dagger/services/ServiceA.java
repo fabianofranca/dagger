@@ -1,4 +1,10 @@
 package com.fabianofranca.dagger.services;
 
-public class ServiceA {
+import javax.inject.Inject;
+
+public class ServiceA implements Service {
+
+    @Inject
+    public ServiceA() {
+    }
 }

@@ -8,7 +8,6 @@ import dagger.Component;
 @Component(modules = ServicesModule.class)
 public interface ActivitiesComponent {
 
-    void injectActivityA(ActivityA activityA);
-
     ActivityB createActivityB();
+    ActivityA createActivityA();
 }

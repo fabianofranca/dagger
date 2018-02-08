@@ -4,19 +4,15 @@ import com.fabianofranca.dagger.services.Service;
 import com.fabianofranca.dagger.services.ServiceA;
 import com.fabianofranca.dagger.services.ServiceB;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
 public abstract class ServicesModule {
 
-    @Provides
-    static ServiceA provideServiceA() {
-        return new ServiceA();
-    }
+    @Binds
+    abstract Service bindServiceA(ServiceA service);
 
-    @Provides
-    static Service provideServiceB(ServiceB service) {
-        return service;
-    }
+    @Binds
+    abstract Service bindServiceB(ServiceB service);
 }
