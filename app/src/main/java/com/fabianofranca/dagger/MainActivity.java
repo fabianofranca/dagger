@@ -3,7 +3,6 @@ package com.fabianofranca.dagger;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.fabianofranca.dagger.activities.ActivityA;
 import com.fabianofranca.dagger.activities.ActivityB;
 import com.fabianofranca.dagger.di.ActivitiesComponent;
 import com.fabianofranca.dagger.di.DaggerActivitiesComponent;
@@ -11,8 +10,8 @@ import com.fabianofranca.dagger.di.DaggerActivitiesComponent;
 public class MainActivity extends AppCompatActivity {
 
     private ActivitiesComponent component;
-    private ActivityA activityA;
-    private ActivityB activityB;
+    private ActivityB activityB1;
+    private ActivityB activityB2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         component = DaggerActivitiesComponent.builder().build();
 
-        activityA = component.createActivityA();
-        activityB = component.createActivityB();
+        activityB1 = component.createActivityB();
+        activityB2 = component.createActivityB();
     }
 }
