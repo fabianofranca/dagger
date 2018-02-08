@@ -3,24 +3,27 @@ package com.fabianofranca.dagger;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.fabianofranca.dagger.activities.ActivityB;
-import com.fabianofranca.dagger.di.ActivitiesComponent;
-import com.fabianofranca.dagger.di.DaggerActivitiesComponent;
+import com.fabianofranca.dagger.activities.CompanyActivity;
+import com.fabianofranca.dagger.activities.UserActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivitiesComponent component;
-    private ActivityB activityB1;
-    private ActivityB activityB2;
+    private CompanyActivity companyActivity;
+    private UserActivity userActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        component = DaggerActivitiesComponent.builder().build();
+        companyActivity = Application.getApplication()
+                .getCompanyServiceComponent()
+                .companyActivityComponent()
+                .createCompanyActivity();
 
-        activityB1 = component.createActivityB();
-        activityB2 = component.createActivityB();
+        userActivity = Application.getApplication()
+                .getUserServiceComponent()
+                .userActivityComponent()
+                .createUserActivity();
     }
 }
