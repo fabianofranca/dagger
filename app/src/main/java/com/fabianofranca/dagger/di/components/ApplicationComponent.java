@@ -13,7 +13,6 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     Context context();
-    ApplicationComponent applicationComponent();
 
     @Component.Builder
     interface Builder {
