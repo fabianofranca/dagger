@@ -2,13 +2,12 @@ package com.fabianofranca.dagger.di.components;
 
 import android.content.Context;
 
-import com.fabianofranca.dagger.di.modules.ApplicationModule;
-
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
 
-@Component(modules = ApplicationModule.class)
+@Component
 @Singleton
 public interface ApplicationComponent {
 
@@ -17,6 +16,8 @@ public interface ApplicationComponent {
     @Component.Builder
     interface Builder {
         ApplicationComponent build();
-        Builder applicationModule(ApplicationModule applicationModule);
+
+        @BindsInstance
+        Builder context(Context context);
     }
 }

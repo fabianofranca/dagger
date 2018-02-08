@@ -6,7 +6,6 @@ import com.fabianofranca.dagger.di.components.DaggerApplicationComponent;
 import com.fabianofranca.dagger.di.components.DaggerCompanyServiceComponent;
 import com.fabianofranca.dagger.di.components.DaggerUserServiceComponent;
 import com.fabianofranca.dagger.di.components.UserServiceComponent;
-import com.fabianofranca.dagger.di.modules.ApplicationModule;
 
 public class Application extends android.app.Application {
 
@@ -23,7 +22,7 @@ public class Application extends android.app.Application {
         application = this;
 
         applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
+                .context(this)
                 .build();
 
         userServiceComponent = DaggerUserServiceComponent
