@@ -13,4 +13,11 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     Context context();
+    ApplicationComponent applicationComponent();
+
+    @Component.Builder
+    interface Builder {
+        ApplicationComponent build();
+        Builder applicationModule(ApplicationModule applicationModule);
+    }
 }
