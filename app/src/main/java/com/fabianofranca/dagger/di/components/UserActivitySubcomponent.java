@@ -10,7 +10,7 @@ import dagger.Subcomponent;
 @PerActivity
 public interface UserActivitySubcomponent {
 
-    UserActivity createUserActivity();
+    void inject(UserActivity userActivity);
 
     @Subcomponent.Builder
     interface Builder extends SubcomponentBuilder<UserActivitySubcomponent> {

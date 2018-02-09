@@ -1,17 +1,26 @@
 package com.fabianofranca.dagger.activities;
 
-import com.fabianofranca.dagger.di.scopes.PerActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.fabianofranca.dagger.Application;
+import com.fabianofranca.dagger.R;
 import com.fabianofranca.dagger.services.CompanyService;
 
 import javax.inject.Inject;
 
-@PerActivity
-public class CompanyActivity implements Activity {
+public class CompanyActivity extends AppCompatActivity {
 
     @Inject
-    CompanyService companyService;
+    CompanyService service;
 
-    @Inject
-    public CompanyActivity() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_company);
+
+        Application.getApplication()
+                .getCompanyActivitySubcomponent()
+                .inject(this);
     }
 }

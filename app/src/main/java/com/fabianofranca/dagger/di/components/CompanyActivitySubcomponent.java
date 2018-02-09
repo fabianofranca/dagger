@@ -10,10 +10,9 @@ import dagger.Subcomponent;
 @PerActivity
 public interface CompanyActivitySubcomponent {
 
-    CompanyActivity createCompanyActivity();
+    void inject(CompanyActivity companyActivity);
 
     @Subcomponent.Builder
     interface Builder extends SubcomponentBuilder<CompanyActivitySubcomponent> {
     }
-
 }

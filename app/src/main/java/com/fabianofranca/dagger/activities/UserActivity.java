@@ -1,17 +1,26 @@
 package com.fabianofranca.dagger.activities;
 
-import com.fabianofranca.dagger.di.scopes.PerActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.fabianofranca.dagger.Application;
+import com.fabianofranca.dagger.R;
 import com.fabianofranca.dagger.services.UserService;
 
 import javax.inject.Inject;
 
-@PerActivity
-public class UserActivity implements Activity {
-
-    private UserService userService;
+public class UserActivity extends AppCompatActivity {
 
     @Inject
-    public UserActivity(UserService userService) {
-        this.userService = userService;
+    UserService service;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user);
+
+        Application.getApplication()
+                .getUserActivitySubcomponent()
+                .inject(this);
     }
 }
