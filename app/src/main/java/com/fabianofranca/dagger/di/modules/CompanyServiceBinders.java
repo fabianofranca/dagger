@@ -2,7 +2,6 @@ package com.fabianofranca.dagger.di.modules;
 
 import com.fabianofranca.dagger.di.SubcomponentBuilder;
 import com.fabianofranca.dagger.di.components.CompanyActivitySubcomponent;
-import com.fabianofranca.dagger.di.components.UserActivitySubcomponent;
 
 import dagger.Binds;
 import dagger.Module;

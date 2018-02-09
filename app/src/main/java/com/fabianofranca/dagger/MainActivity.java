@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
-import com.fabianofranca.dagger.activities.CompanyActivity;
-import com.fabianofranca.dagger.activities.UserActivity;
+import com.fabianofranca.dagger.presentation.company.CompanyActivity;
+import com.fabianofranca.dagger.presentation.user.UserActivity;
 
 public class MainActivity extends AppCompatActivity {
 

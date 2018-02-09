@@ -1,12 +1,10 @@
 package com.fabianofranca.dagger;
 
 import com.fabianofranca.dagger.di.components.ApplicationComponent;
-import com.fabianofranca.dagger.di.components.CompanyActivitySubcomponent;
 import com.fabianofranca.dagger.di.components.CompanyServiceComponent;
 import com.fabianofranca.dagger.di.components.DaggerApplicationComponent;
 import com.fabianofranca.dagger.di.components.DaggerCompanyServiceComponent;
 import com.fabianofranca.dagger.di.components.DaggerUserServiceComponent;
-import com.fabianofranca.dagger.di.components.UserActivitySubcomponent;
 import com.fabianofranca.dagger.di.components.UserServiceComponent;
 
 public class Application extends android.app.Application {
@@ -14,8 +12,8 @@ public class Application extends android.app.Application {
     private static Application application;
 
     private ApplicationComponent applicationComponent;
-    private UserActivitySubcomponent userActivitySubcomponent;
-    private CompanyActivitySubcomponent companyActivitySubcomponent;
+    private UserServiceComponent userServiceComponent;
+    private CompanyServiceComponent companyServiceComponent;
 
     @Override
     public void onCreate() {
@@ -27,25 +25,15 @@ public class Application extends android.app.Application {
                 .context(this)
                 .build();
 
-        UserServiceComponent userServiceComponent = DaggerUserServiceComponent
+        userServiceComponent = DaggerUserServiceComponent
                 .builder()
                 .applicationComponent(applicationComponent)
                 .build();
 
-        CompanyServiceComponent companyServiceComponent = DaggerCompanyServiceComponent
+        companyServiceComponent = DaggerCompanyServiceComponent
                 .builder()
                 .applicationComponent(applicationComponent)
                 .build();
-
-        userActivitySubcomponent = (UserActivitySubcomponent) userServiceComponent
-                .subcomponentBuilders()
-                .get(UserActivitySubcomponent.Builder.class)
-                .get().build();
-
-        companyActivitySubcomponent = (CompanyActivitySubcomponent) companyServiceComponent
-                .subcomponentBuilders()
-                .get(CompanyActivitySubcomponent.Builder.class)
-                .get().build();
     }
 
     public static Application getApplication() {
@@ -56,11 +44,11 @@ public class Application extends android.app.Application {
         return applicationComponent;
     }
 
-    public UserActivitySubcomponent getUserActivitySubcomponent() {
-        return userActivitySubcomponent;
+    public UserServiceComponent getUserServiceComponent() {
+        return userServiceComponent;
     }
 
-    public CompanyActivitySubcomponent getCompanyActivitySubcomponent() {
-        return companyActivitySubcomponent;
+    public CompanyServiceComponent getCompanyServiceComponent() {
+        return companyServiceComponent;
     }
 }
