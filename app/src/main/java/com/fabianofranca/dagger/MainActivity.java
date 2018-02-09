@@ -1,7 +1,7 @@
 package com.fabianofranca.dagger;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.fabianofranca.dagger.activities.CompanyActivity;
 import com.fabianofranca.dagger.activities.UserActivity;
@@ -17,13 +17,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         companyActivity = Application.getApplication()
-                .getCompanyServiceComponent()
-                .companyActivityComponent()
+                .getCompanyActivitySubcomponent()
                 .createCompanyActivity();
 
         userActivity = Application.getApplication()
-                .getUserServiceComponent()
-                .userActivityComponent()
+                .getUserActivitySubcomponent()
                 .createUserActivity();
     }
 }
