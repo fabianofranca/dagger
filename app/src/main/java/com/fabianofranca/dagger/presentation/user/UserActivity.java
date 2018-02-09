@@ -1,24 +1,20 @@
 package com.fabianofranca.dagger.presentation.user;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.fabianofranca.dagger.R;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
+import dagger.android.DaggerActivity;
 
-public class UserActivity extends AppCompatActivity implements UserContract.View {
+public class UserActivity extends DaggerActivity implements UserContract.View {
 
     @Inject
     UserContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
     }
