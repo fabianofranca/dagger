@@ -1,23 +1,16 @@
 package com.fabianofranca.dagger.di.components;
 
-import com.fabianofranca.dagger.di.SubcomponentBuilder;
 import com.fabianofranca.dagger.di.modules.CompanyPresentationModule;
 import com.fabianofranca.dagger.di.scopes.PerActivity;
 import com.fabianofranca.dagger.presentation.company.CompanyActivity;
-import com.fabianofranca.dagger.presentation.company.CompanyContract;
 
-import dagger.BindsInstance;
 import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
 
 @Subcomponent(modules = CompanyPresentationModule.class)
 @PerActivity
-public interface CompanyActivitySubcomponent {
-
-    void inject(CompanyActivity companyActivity);
+public interface CompanyActivitySubcomponent extends AndroidInjector<CompanyActivity> {
 
     @Subcomponent.Builder
-    interface Builder extends SubcomponentBuilder<CompanyActivitySubcomponent> {
-        @BindsInstance
-        Builder view(CompanyContract.View view);
-    }
+    abstract class Builder extends AndroidInjector.Builder<CompanyActivity> {}
 }

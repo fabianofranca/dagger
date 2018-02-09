@@ -1,23 +1,30 @@
 package com.fabianofranca.dagger.di.components;
 
-import android.content.Context;
+import com.fabianofranca.dagger.Application;
+import com.fabianofranca.dagger.di.modules.ApplicationBinders;
+import com.fabianofranca.dagger.di.modules.ApplicationModule;
 
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 
-@Component
+@Component(modules = {
+        AndroidInjectionModule.class,
+        ApplicationBinders.class,
+        ApplicationModule.class
+})
 @Singleton
 public interface ApplicationComponent {
-
-    Context context();
 
     @Component.Builder
     interface Builder {
         ApplicationComponent build();
 
         @BindsInstance
-        Builder context(Context context);
+        Builder application(Application application);
     }
+
+    void inject(Application application);
 }

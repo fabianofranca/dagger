@@ -1,19 +1,21 @@
 package com.fabianofranca.dagger;
 
-import com.fabianofranca.dagger.di.components.ApplicationComponent;
-import com.fabianofranca.dagger.di.components.CompanyServiceComponent;
-import com.fabianofranca.dagger.di.components.DaggerApplicationComponent;
-import com.fabianofranca.dagger.di.components.DaggerCompanyServiceComponent;
-import com.fabianofranca.dagger.di.components.DaggerUserServiceComponent;
-import com.fabianofranca.dagger.di.components.UserServiceComponent;
+import android.app.Activity;
 
-public class Application extends android.app.Application {
+import com.fabianofranca.dagger.di.components.DaggerApplicationComponent;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+
+public class Application extends android.app.Application implements HasActivityInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     private static Application application;
-
-    private ApplicationComponent applicationComponent;
-    private UserServiceComponent userServiceComponent;
-    private CompanyServiceComponent companyServiceComponent;
 
     @Override
     public void onCreate() {
@@ -21,34 +23,18 @@ public class Application extends android.app.Application {
 
         application = this;
 
-        applicationComponent = DaggerApplicationComponent.builder()
-                .context(this)
-                .build();
-
-        userServiceComponent = DaggerUserServiceComponent
-                .builder()
-                .applicationComponent(applicationComponent)
-                .build();
-
-        companyServiceComponent = DaggerCompanyServiceComponent
-                .builder()
-                .applicationComponent(applicationComponent)
-                .build();
+        DaggerApplicationComponent.builder()
+                .application(this)
+                .build()
+                .inject(this);
     }
 
     public static Application getApplication() {
         return application;
     }
 
-    public ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
-    }
-
-    public UserServiceComponent getUserServiceComponent() {
-        return userServiceComponent;
-    }
-
-    public CompanyServiceComponent getCompanyServiceComponent() {
-        return companyServiceComponent;
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 }

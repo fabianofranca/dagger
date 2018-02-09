@@ -3,12 +3,12 @@ package com.fabianofranca.dagger.presentation.company;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.fabianofranca.dagger.Application;
 import com.fabianofranca.dagger.R;
-import com.fabianofranca.dagger.di.components.CompanyActivitySubcomponent;
 import com.fabianofranca.dagger.di.scopes.PerActivity;
 
 import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 @PerActivity
 public class CompanyActivity extends AppCompatActivity implements CompanyContract.View{
@@ -18,16 +18,10 @@ public class CompanyActivity extends AppCompatActivity implements CompanyContrac
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        AndroidInjection.inject(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company);
-
-        CompanyActivitySubcomponent.Builder builder = (CompanyActivitySubcomponent.Builder)
-                Application.getApplication()
-                .getCompanyServiceComponent()
-                .subcomponentBuilders()
-                .get(CompanyActivitySubcomponent.Builder.class)
-                .get();
-
-        builder.view(this).build().inject(this);
     }
 }

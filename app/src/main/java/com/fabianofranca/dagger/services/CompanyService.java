@@ -2,11 +2,11 @@ package com.fabianofranca.dagger.services;
 
 import android.content.Context;
 
-import com.fabianofranca.dagger.di.scopes.PerService;
+import com.fabianofranca.dagger.di.scopes.PerActivity;
 
 import javax.inject.Inject;
 
-@PerService
+@PerActivity
 public class CompanyService implements Service {
 
     Context context;
